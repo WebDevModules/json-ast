@@ -7,9 +7,25 @@ const parser = json_ast.parse;
 const SOME_JSON = `
 // some comment
 {
-  "key1": "value1", // some other comments
-  "key2": "value2"
-// some more comments
+    "field": "name",
+    "label": "Name",
+    "type": "text",
+    "required": true,
+    "help": "Enter a unique name for each Crowdstrike falcon host account.",
+    "validators": [
+        {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "errorMsg": "Length of Name is restricted from 1 to 50."
+        },
+        {
+            "type": "regex",
+            "pattern": "^\\w+$",
+            "errorMsg": "Characters of Name should match regex ^\\w+$ ."
+        }
+    ]
+}
 `;
 
 function parseJSON() {
